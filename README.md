@@ -90,3 +90,5 @@ How I made this:
     > db.books.insert({title: "Stardust", pages: 304, haveRead: true})
     WriteResult({ "nInserted" : 1 })
     ```
+
+1. commit
