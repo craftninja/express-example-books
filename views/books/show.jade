@@ -1,5 +1,7 @@
 h1= book.title
 
+a(href="/books/#{book.id}/edit") Edit this book
+
 if book.haveRead
   p This book is #{book.pages} pages long, and you have read this book.
 else

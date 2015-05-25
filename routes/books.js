@@ -34,4 +34,24 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
+router.get('/:id/edit', function(req, res, next) {
+  Book.findOne({_id: req.params.id}, function(err, book) {
+    if (err) return console.log(err);
+    res.render('books/edit', {book: book});
+  });
+});
+
+router.post('/:id', function(req, res, next) {
+  Book.findOne({_id: req.params.id}, function(err, book) {
+    if (err) return console.log(err);
+    book.title = req.body['book[title]'];
+    book.pages = req.body['book[pages]'];
+    book.haveRead = req.body['book[haveRead]'];
+    book.save(function (err, book) {
+      if (err) return console.error(err);
+      res.redirect('/books/' + book.id);
+    })
+  });
+});
+
 module.exports = router;

@@ -201,3 +201,59 @@ How I made this:
     ```
 
 1. commit
+1. user can edit / update books
+  * add link to edit from book show page
+    * `a(href="/books/#{book.id}/edit") Edit this book`
+  * add edit route for book
+
+    ```
+    router.get('/:id/edit', function(req, res, next) {
+      Book.findOne({_id: req.params.id}, function(err, book) {
+        if (err) return console.log(err);
+        res.render('books/edit', {book: book});
+      });
+    });
+    ```
+
+  * add edit view `view/books/edit.jade`
+
+    ```
+    h1 Edit #{book.title}
+    form(action='/books/' + book.id method='post')
+      p
+        label Title
+        input(type='text' name='book[title]' value='#{book.title}')
+      p
+        label Number of Pages
+        input(type='number' name='book[pages]' value='#{book.pages}')
+      if book.haveRead
+        p
+          label Have you read this book?
+            input(type='checkbox' name='book[haveRead]' checked='#{book.haveRead}')
+      else
+        p
+          label Have you read this book?
+            input(type='checkbox' name='book[haveRead]')
+      p
+        input(type='submit' name='commit' value='Update Book')
+
+    ```
+
+  * add update route for book
+
+    ```
+    router.post('/:id', function(req, res, next) {
+      Book.findOne({_id: req.params.id}, function(err, book) {
+        if (err) return console.log(err);
+        book.title = req.body['book[title]'];
+        book.pages = req.body['book[pages]'];
+        book.haveRead = req.body['book[haveRead]'];
+        book.save(function (err, book) {
+          if (err) return console.error(err);
+          res.redirect('/books/' + book.id);
+        })
+      });
+    });
+    ```
+
+1. commit

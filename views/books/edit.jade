@@ -1,0 +1,18 @@
+h1 Edit #{book.title}
+form(action='/books/' + book.id method='post')
+  p
+    label Title
+    input(type='text' name='book[title]' value='#{book.title}')
+  p
+    label Number of Pages
+    input(type='number' name='book[pages]' value='#{book.pages}')
+  if book.haveRead
+    p
+      label Have you read this book?
+        input(type='checkbox' name='book[haveRead]' checked='#{book.haveRead}')
+  else
+    p
+      label Have you read this book?
+        input(type='checkbox' name='book[haveRead]')
+  p
+    input(type='submit' name='commit' value='Update Book')
