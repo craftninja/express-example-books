@@ -257,3 +257,20 @@ How I made this:
     ```
 
 1. commit
+1. user can delete books
+  * add delete link to show page
+    * `a(href="/books/#{book.id}/delete") Delete this book`
+  * add delete route for book
+
+    ```
+    router.get('/:id/delete', function(req, res, next) {
+      Book.findOne({_id: req.params.id}, function(err, book) {
+        if (err) return console.log(err);
+        book.remove();
+        res.redirect('/books/');
+      });
+    });
+    ```
+
+1. commit
+1. Voila! You have the node/express/mongo/mongoose/CRUD app. Hooray! Now on to styling... why didn't we do that as we went? (Next iteration!?)

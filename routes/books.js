@@ -54,4 +54,12 @@ router.post('/:id', function(req, res, next) {
   });
 });
 
+router.get('/:id/delete', function(req, res, next) {
+  Book.findOne({_id: req.params.id}, function(err, book) {
+    if (err) return console.log(err);
+    book.remove();
+    res.redirect('/books/');
+  });
+});
+
 module.exports = router;
