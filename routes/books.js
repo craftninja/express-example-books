@@ -11,4 +11,11 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/:id', function(req, res, next) {
+  Book.findOne({_id: req.params.id}, function(err, book) {
+    if (err) return console.log(err);
+    res.render('books/show', {book: book});
+  });
+});
+
 module.exports = router;

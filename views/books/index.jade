@@ -3,6 +3,10 @@ h1  My Books
 ul
   each book in books
     if book.haveRead
-      li= book.title + " (" + book.pages + "pages) - read"
+      li
+        a(href="books/#{book.id}")= book.title
+        =" (" + book.pages + "pages) - read"
     else
-      li= book.title + " (" + book.pages + " pages) - unread"
+      li
+        a(href="books/#{book.id}")= book.title
+        =" (" + book.pages + " pages) - unread"

@@ -92,3 +92,40 @@ How I made this:
     ```
 
 1. commit
+1. user can see a book's show page
+  * add link to index
+
+    ```
+    if book.haveRead
+      li
+        a(href="books/#{book.id}")= book.title
+        =" (" + book.pages + "pages) - read"
+    else
+      li
+        a(href="books/#{book.id}")= book.title
+        =" (" + book.pages + " pages) - unread"
+    ```
+
+  * add route to `routes/books.js`
+
+    ```
+    router.get('/:id', function(req, res, next) {
+      Book.findOne({_id: req.params.id}, function(err, book) {
+        if (err) return console.log(err);
+        res.render('books/show', {book: book});
+      });
+    });
+    ```
+
+  * add show page to `views/books/show.jade`
+
+    ```
+    h1= book.title
+
+    if book.haveRead
+      p This book is #{book.pages} pages long, and you have read this book.
+    else
+      p This book is #{book.pages} pages long, and you have not read this book.
+    ```
+
+1. commit
