@@ -1,12 +1,14 @@
 h1  My Books
 
+a(href="/books/new") Add a new book
+
 ul
   each book in books
     if book.haveRead
       li
-        a(href="books/#{book.id}")= book.title
+        a(href="/books/#{book.id}")= book.title
         =" (" + book.pages + "pages) - read"
     else
       li
-        a(href="books/#{book.id}")= book.title
+        a(href="/books/#{book.id}")= book.title
         =" (" + book.pages + " pages) - unread"

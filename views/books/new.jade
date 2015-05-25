@@ -1,0 +1,13 @@
+h1  New Book
+form(action='/books' method='post')
+  p
+    label Title
+    input(type='text' name='book[title]')
+  p
+    label Number of Pages
+    input(type='number' name='book[pages]')
+  p
+    label Have you read this book?
+      input(type='checkbox' name='book[haveRead]')
+  p
+    input(type='submit' name='commit' value='Add Book')

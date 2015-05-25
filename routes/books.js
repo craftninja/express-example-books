@@ -11,6 +11,22 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/new', function(req, res, next) {
+  res.render('books/new')
+});
+
+router.post('/', function(req, res, next) {
+  book = new Book({
+    title: req.body['book[title]'],
+    pages: req.body['book[pages]'],
+    haveRead: req.body['book[haveRead]']
+  })
+  book.save(function (err, book) {
+    if (err) return console.error(err);
+    res.redirect('books/' + book.id);
+  });
+});
+
 router.get('/:id', function(req, res, next) {
   Book.findOne({_id: req.params.id}, function(err, book) {
     if (err) return console.log(err);

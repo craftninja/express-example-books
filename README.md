@@ -132,3 +132,72 @@ How I made this:
     ```
 
 1. commit
+1. user can add new books
+  * add "new" link to books index
+
+    ```
+    a(href="books/new") Add a new book
+    ```
+
+  * add route for new books
+
+    ```
+    router.get('/new', function(req, res, next) {
+      res.render('books/new')
+    });
+    ```
+
+  * add new page `views/books/new.jade`
+
+    ```
+    h1  New Book
+    form(action='/books' method='post')
+      p
+        label Title
+        input(type='text' name='book[title]')
+      p
+        label Number of Pages
+        input(type='number' name='book[pages]')
+      p
+        label Have you read this book?
+          input(type='checkbox' name='book[haveRead]')
+      p
+        input(type='submit' name='commit' value='Add Book')
+    ```
+
+  * add create route
+
+    ```
+    router.post('/', function(req, res, next) {
+      book = new Book({
+        title: req.body['book[title]'],
+        pages: req.body['book[pages]'],
+        haveRead: req.body['book[haveRead]']
+      })
+      book.save(function (err, book) {
+        if (err) return console.error(err);
+        res.redirect('books/' + book.id);
+      });
+    });
+    ```
+
+  * alter paths in index (not sure why... just started directing to `books/books/...`)
+
+    ```
+    h1  My Books
+
+    a(href="/books/new") Add a new book
+
+    ul
+      each book in books
+        if book.haveRead
+          li
+            a(href="/books/#{book.id}")= book.title
+            =" (" + book.pages + "pages) - read"
+        else
+          li
+            a(href="/books/#{book.id}")= book.title
+            =" (" + book.pages + " pages) - unread"
+    ```
+
+1. commit
