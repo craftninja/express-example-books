@@ -292,4 +292,29 @@
     ```
 
 1. commit
-1. Voila! You have the node/express/mongo/mongoose/CRUD app. Hooray! Now on to styling... why didn't we do that as we went? (Next iteration!?)
+1. style this project with bootstrap
+  * go to [http://getbootstrap.com/](http://getbootstrap.com/) and download the bootstrap zip
+  * unzip file, and rename top directory just `bootstrap`
+  * move entire `bootstrap` directory inside this app's `public` directory
+  * change `layout.jade` head content to just this:
+
+    ```
+    title= title
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
+    ```
+
+  * Add the following at the top each of your nested views and tab in all content once (so everything is nested under `block content`)
+
+    ```
+    extends ../layout
+
+    block content
+      <!-- rest of view -->
+    ```
+
+    * note the `../layout` which references `layout.jade` in the `views` directory. If you want a specific layout for the directory of views you might be in (for example `books`), create a new layout in that same directory and just use `layout` here.
+  * style away!

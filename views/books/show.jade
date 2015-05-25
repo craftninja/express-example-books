@@ -1,11 +1,16 @@
-h1= book.title
+extends ../layout
 
-p
-  a(href="/books/#{book.id}/edit") Edit this book
-p
-  a(href="/books/#{book.id}/delete") Delete this book
+block content
+  div(class="page-header")
+    a(href="/books/#{book.id}/edit" class="btn btn-warning pull-right") Edit this book
+    h1= book.title
 
-if book.haveRead
-  p This book is #{book.pages} pages long, and you have read this book.
-else
-  p This book is #{book.pages} pages long, and you have not read this book.
+  ol(class="breadcrumb")
+    li
+      a(href="/books") My Books
+    li(class="active")= book.title
+
+  if book.haveRead
+    p This book is #{book.pages} pages long, and you have read this book.
+  else
+    p This book is #{book.pages} pages long, and you have not read this book.

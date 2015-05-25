@@ -1,14 +1,19 @@
-h1  My Books
+extends ../layout
 
-a(href="/books/new") Add a new book
+block content
 
-ul
-  each book in books
-    if book.haveRead
-      li
-        a(href="/books/#{book.id}")= book.title
-        =" (" + book.pages + "pages) - read"
-    else
-      li
-        a(href="/books/#{book.id}")= book.title
-        =" (" + book.pages + " pages) - unread"
+  div(class='page-header')
+    a(href="/books/new" class="btn btn-info pull-right") Add a new book
+    h1  My Books
+
+
+  ul(class="list-group")
+    each book in books
+      if book.haveRead
+        li(class="list-group-item")
+          a(href="/books/#{book.id}")= book.title
+          =" (" + book.pages + "pages) - read"
+      else
+        li(class="list-group-item")
+          a(href="/books/#{book.id}")= book.title
+          =" (" + book.pages + " pages) - unread"

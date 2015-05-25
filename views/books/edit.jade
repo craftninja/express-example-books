@@ -1,18 +1,38 @@
-h1 Edit #{book.title}
-form(action='/books/' + book.id method='post')
-  p
-    label Title
-    input(type='text' name='book[title]' value='#{book.title}')
-  p
-    label Number of Pages
-    input(type='number' name='book[pages]' value='#{book.pages}')
-  if book.haveRead
-    p
-      label Have you read this book?
-        input(type='checkbox' name='book[haveRead]' checked='#{book.haveRead}')
-  else
-    p
-      label Have you read this book?
-        input(type='checkbox' name='book[haveRead]')
-  p
-    input(type='submit' name='commit' value='Update Book')
+extends ../layout
+
+block content
+  div(class="page-header")
+    a(href="/books/#{book.id}/delete" class="btn btn-danger pull-right") Delete this book
+    h1 Edit #{book.title}
+
+  ol(class="breadcrumb")
+    li
+      a(href="/books") My Books
+    li
+      a(href="/books/#{book.id}")= book.title
+    li(class="active") Edit
+
+  form(action='/books/' + book.id method='post' class="form-horizontal")
+
+    div(class="form-group")
+      label(class="col-sm-2 control-label") Title
+      div(class="col-sm-5")
+        input(type='text' name='book[title]' value='#{book.title}' class="form-control")
+
+    div(class="form-group")
+      label(class="col-sm-2 control-label") Number of Pages
+      div(class="col-sm-5")
+        input(type='number' name='book[pages]' value='#{book.pages}' class="form-control")
+
+    div(class="form-group")
+      div(class="col-sm-offset-2 col-sm-5")
+        div(class="checkbox")
+        label Have you read this book?
+          if book.haveRead
+            input(type='checkbox' name='book[haveRead]' checked='#{book.haveRead}' class="form-control")
+          else
+            input(type='checkbox' name='book[haveRead]' class="form-control")
+
+    div(class="form-group")
+      div(class="col-sm-offset-2 col-sm-10")
+        input(type='submit' name='commit' value='Update Book' class="btn btn-success")

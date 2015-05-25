@@ -1,13 +1,32 @@
-h1  New Book
-form(action='/books' method='post')
-  p
-    label Title
-    input(type='text' name='book[title]')
-  p
-    label Number of Pages
-    input(type='number' name='book[pages]')
-  p
-    label Have you read this book?
-      input(type='checkbox' name='book[haveRead]')
-  p
-    input(type='submit' name='commit' value='Add Book')
+extends ../layout
+
+block content
+
+  h1(class="page-header")  New Book
+
+  ol(class="breadcrumb")
+    li
+      a(href="/books") My Books
+    li(class="active") New Book
+
+  form(action='/books' method='post' class="form-horizontal")
+
+    div(class="form-group")
+      label(class="col-sm-2 control-label") Title
+      div(class="col-sm-5")
+        input(type='text' name='book[title]' class="form-control")
+
+    div(class="form-group")
+      label(class="col-sm-2 control-label") Number of Pages
+      div(class="col-sm-5")
+        input(type='number' name='book[pages]' class="form-control")
+
+    div(class="form-group")
+      div(class="col-sm-offset-2 col-sm-5")
+        div(class="checkbox")
+        label Have you read this book?
+          input(type='checkbox' name='book[haveRead]' class="form-control")
+
+    div(class="form-group")
+      div(class="col-sm-offset-2 col-sm-10")
+        input(type='submit' name='commit' value='Add Book' class="btn btn-success")
