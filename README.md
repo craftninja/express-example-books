@@ -1,6 +1,25 @@
 # README
 
-How I made this:
+### Get this puppy up and running
+
+1. Fork, clone, npm install
+1. Create the MongoDB
+
+  ```
+  $ mongo
+  MongoDB shell version: 3.0.3
+  connecting to: test
+  > use book
+  switched to db book
+  > db.books
+  book.books
+  ```
+
+1. start server
+  * DEBUG=book:* npm start
+  * server must be stopped and started with each codebase change
+
+### How I made this:
 
 1. $ express book
 1. $ cd book && npm install
@@ -83,7 +102,7 @@ How I made this:
   * create the mongo database and add one book:
 
     ```
-    $mongo
+    $ mongo
     MongoDB shell version: 3.0.3
     connecting to: test
     > use book
