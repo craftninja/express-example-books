@@ -3,18 +3,6 @@
 ### Get this puppy up and running
 
 1. Fork, clone, npm install
-1. Create the MongoDB
-
-  ```
-  $ mongo
-  MongoDB shell version: 3.0.3
-  connecting to: test
-  > use book
-  switched to db book
-  > db.books
-  book.books
-  ```
-
 1. start server
   * DEBUG=book:* npm start
   * server must be stopped and started with each codebase change
